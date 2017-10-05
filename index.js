@@ -231,8 +231,10 @@ function fromBson(collection, collectionPath, next) {
     }
 
     docsBulk.push({
-      insertOne: {
-        document: doc
+      updateOne: {
+        filter: { _id:doc._id },
+        update: doc,
+        upsert: true
       }
     });
 
